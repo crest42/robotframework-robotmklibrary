@@ -1,14 +1,13 @@
-import logging
+"""Keyword library for Robot Framework suites run by Robotmk.
 
-logger = logging.getLogger(__name__)
+``Library RobotmkLibrary`` imports the keywords, which live in
+``RobotmkLibrary.runtime``. The trace listener is
+``RobotmkLibrary.instrumentation.listener.RobotmkListener``.
+"""
 
+from importlib.metadata import version
 
-def monitor_subsequent_keyword_runtime(
-    *,
-    discover_as: str | None = None,
-) -> None:
-    logger.info(
-        "The subsequent keyword will be discovered in Checkmk using its own name"
-        if discover_as is None
-        else f'The subsequent keyword will be discovered in Checkmk as: "{discover_as}"',
-    )
+from RobotmkLibrary.runtime import monitor_subsequent_keyword_runtime
+
+__version__ = version("robotframework-robotmklibrary")
+__all__ = ["monitor_subsequent_keyword_runtime"]
